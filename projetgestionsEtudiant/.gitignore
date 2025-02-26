@@ -1,0 +1,18 @@
+# Ignorer les fichiers de Visual Studio
+.vs/
+*.suo
+*.user
+*.cache
+*.obj
+*.exe
+*.dll
+
+# Ignorer les packages de NuGet
+packages/
+
+# Ignorer les fichiers temporaires et build
+bin/
+obj/
+
+# Ignorer les fichiers de configuration spécifiques à l'environnement
+appsettings.*
