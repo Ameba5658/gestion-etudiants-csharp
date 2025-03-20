@@ -42,7 +42,15 @@
             this.btnAjouter = new System.Windows.Forms.Button();
             this.btnModifier = new System.Windows.Forms.Button();
             this.btnSupprimer = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider4 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProfesseurs)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -93,28 +101,28 @@
             // 
             // txtNomProf
             // 
-            this.txtNomProf.Location = new System.Drawing.Point(193, 38);
+            this.txtNomProf.Location = new System.Drawing.Point(240, 26);
             this.txtNomProf.Name = "txtNomProf";
             this.txtNomProf.Size = new System.Drawing.Size(139, 26);
             this.txtNomProf.TabIndex = 4;
             // 
             // txtPrenomProf
             // 
-            this.txtPrenomProf.Location = new System.Drawing.Point(191, 102);
+            this.txtPrenomProf.Location = new System.Drawing.Point(238, 102);
             this.txtPrenomProf.Name = "txtPrenomProf";
             this.txtPrenomProf.Size = new System.Drawing.Size(141, 26);
             this.txtPrenomProf.TabIndex = 5;
             // 
             // txtEmailProf
             // 
-            this.txtEmailProf.Location = new System.Drawing.Point(193, 179);
+            this.txtEmailProf.Location = new System.Drawing.Point(238, 183);
             this.txtEmailProf.Name = "txtEmailProf";
             this.txtEmailProf.Size = new System.Drawing.Size(139, 26);
             this.txtEmailProf.TabIndex = 6;
             // 
             // txtTelephoneProf
             // 
-            this.txtTelephoneProf.Location = new System.Drawing.Point(191, 243);
+            this.txtTelephoneProf.Location = new System.Drawing.Point(238, 247);
             this.txtTelephoneProf.Name = "txtTelephoneProf";
             this.txtTelephoneProf.Size = new System.Drawing.Size(132, 26);
             this.txtTelephoneProf.TabIndex = 7;
@@ -125,12 +133,12 @@
             this.dgvProfesseurs.AllowUserToDeleteRows = false;
             this.dgvProfesseurs.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvProfesseurs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProfesseurs.Location = new System.Drawing.Point(357, 12);
+            this.dgvProfesseurs.Location = new System.Drawing.Point(397, 12);
             this.dgvProfesseurs.Name = "dgvProfesseurs";
             this.dgvProfesseurs.ReadOnly = true;
             this.dgvProfesseurs.RowHeadersWidth = 62;
             this.dgvProfesseurs.RowTemplate.Height = 28;
-            this.dgvProfesseurs.Size = new System.Drawing.Size(559, 334);
+            this.dgvProfesseurs.Size = new System.Drawing.Size(653, 334);
             this.dgvProfesseurs.TabIndex = 8;
             this.dgvProfesseurs.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProfesseurs_CellClick);
             // 
@@ -164,11 +172,28 @@
             this.btnSupprimer.UseVisualStyleBackColor = true;
             this.btnSupprimer.Click += new System.EventHandler(this.btnSupprimer_Click);
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // errorProvider2
+            // 
+            this.errorProvider2.ContainerControl = this;
+            // 
+            // errorProvider3
+            // 
+            this.errorProvider3.ContainerControl = this;
+            // 
+            // errorProvider4
+            // 
+            this.errorProvider4.ContainerControl = this;
+            // 
             // FormProfesseur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(928, 450);
+            this.BackColor = System.Drawing.Color.Turquoise;
+            this.ClientSize = new System.Drawing.Size(1074, 450);
             this.Controls.Add(this.btnSupprimer);
             this.Controls.Add(this.btnModifier);
             this.Controls.Add(this.btnAjouter);
@@ -185,6 +210,10 @@
             this.Text = "FormProfesseur";
             this.Load += new System.EventHandler(this.FormProfesseur_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProfesseurs)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -205,5 +234,9 @@
         private System.Windows.Forms.Button btnAjouter;
         private System.Windows.Forms.Button btnModifier;
         private System.Windows.Forms.Button btnSupprimer;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ErrorProvider errorProvider2;
+        private System.Windows.Forms.ErrorProvider errorProvider3;
+        private System.Windows.Forms.ErrorProvider errorProvider4;
     }
 }

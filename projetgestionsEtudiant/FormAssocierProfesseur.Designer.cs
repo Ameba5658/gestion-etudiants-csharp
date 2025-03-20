@@ -50,17 +50,17 @@
             // cmbProfesseurs
             // 
             this.cmbProfesseurs.FormattingEnabled = true;
-            this.cmbProfesseurs.Location = new System.Drawing.Point(214, 32);
+            this.cmbProfesseurs.Location = new System.Drawing.Point(280, 36);
             this.cmbProfesseurs.Name = "cmbProfesseurs";
-            this.cmbProfesseurs.Size = new System.Drawing.Size(121, 28);
+            this.cmbProfesseurs.Size = new System.Drawing.Size(170, 28);
             this.cmbProfesseurs.TabIndex = 3;
             // 
             // btnAssocier
             // 
             this.btnAssocier.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAssocier.Location = new System.Drawing.Point(61, 243);
+            this.btnAssocier.Location = new System.Drawing.Point(125, 295);
             this.btnAssocier.Name = "btnAssocier";
-            this.btnAssocier.Size = new System.Drawing.Size(124, 37);
+            this.btnAssocier.Size = new System.Drawing.Size(224, 59);
             this.btnAssocier.TabIndex = 6;
             this.btnAssocier.Text = "Associer";
             this.btnAssocier.UseVisualStyleBackColor = true;
@@ -107,7 +107,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.Color.Turquoise;
+            this.ClientSize = new System.Drawing.Size(1059, 457);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.clbClasses);

@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using projetgestionsEtudiant.Models;
 
@@ -15,6 +9,10 @@ namespace projetgestionsEtudiant
     {
         private AppDbContext db = new AppDbContext();
         private int selectedId = 0;
+
+        // Ajout de l'ErrorProvider
+        private ErrorProvider errorProvider = new ErrorProvider();
+
         public FormProfesseur()
         {
             InitializeComponent();
@@ -33,9 +31,27 @@ namespace projetgestionsEtudiant
 
         private void btnAjouter_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtNomProf.Text) && !string.IsNullOrEmpty(txtPrenomProf.Text) &&
-        !string.IsNullOrEmpty(txtEmailProf.Text) && !string.IsNullOrEmpty(txtTelephoneProf.Text))
+            // Validation des champs avec l'ErrorProvider
+            if (string.IsNullOrEmpty(txtNomProf.Text))
             {
+                errorProvider.SetError(txtNomProf, "Le nom du professeur est requis.");
+            }
+            else if (string.IsNullOrEmpty(txtPrenomProf.Text))
+            {
+                errorProvider.SetError(txtPrenomProf, "Le prénom du professeur est requis.");
+            }
+            else if (string.IsNullOrEmpty(txtEmailProf.Text))
+            {
+                errorProvider.SetError(txtEmailProf, "L'email du professeur est requis.");
+            }
+            else if (string.IsNullOrEmpty(txtTelephoneProf.Text))
+            {
+                errorProvider.SetError(txtTelephoneProf, "Le téléphone du professeur est requis.");
+            }
+            else
+            {
+                errorProvider.Clear(); // Efface les erreurs si tout est valide
+
                 var professeur = new Professeur
                 {
                     Nom = txtNomProf.Text,
@@ -53,10 +69,6 @@ namespace projetgestionsEtudiant
                 txtTelephoneProf.Clear();
                 MessageBox.Show("Ajout effectué avec succès !", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            else
-            {
-                MessageBox.Show("Veuillez remplir tous les champs.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
         }
 
         private void dgvProfesseurs_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -68,29 +80,52 @@ namespace projetgestionsEtudiant
                 txtPrenomProf.Text = dgvProfesseurs.Rows[e.RowIndex].Cells["Prenom"].Value.ToString();
                 txtEmailProf.Text = dgvProfesseurs.Rows[e.RowIndex].Cells["Email"].Value.ToString();
                 txtTelephoneProf.Text = dgvProfesseurs.Rows[e.RowIndex].Cells["Telephone"].Value.ToString();
+
+                errorProvider.Clear(); // Effacer l'erreur lors de la sélection d'un professeur
             }
         }
 
         private void btnModifier_Click(object sender, EventArgs e)
         {
-            if (selectedId != 0 && !string.IsNullOrEmpty(txtNomProf.Text) && !string.IsNullOrEmpty(txtPrenomProf.Text) &&
-       !string.IsNullOrEmpty(txtEmailProf.Text) && !string.IsNullOrEmpty(txtTelephoneProf.Text))
+            if (selectedId != 0)
             {
-                var professeur = db.Professeurs.Find(selectedId);
-                if (professeur != null)
+                // Validation des champs avec l'ErrorProvider
+                if (string.IsNullOrEmpty(txtNomProf.Text))
                 {
-                    professeur.Nom = txtNomProf.Text;
-                    professeur.Prenom = txtPrenomProf.Text;
-                    professeur.Email = txtEmailProf.Text;
-                    professeur.Telephone = txtTelephoneProf.Text;
-                    db.SaveChanges();
-                    ChargerProfesseurs();
-                    txtNomProf.Clear();
-                    txtPrenomProf.Clear();
-                    txtEmailProf.Clear();
-                    txtTelephoneProf.Clear();
-                    selectedId = 0;
-                    MessageBox.Show("Modification effectuée avec succès !", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    errorProvider.SetError(txtNomProf, "Le nom du professeur est requis.");
+                }
+                else if (string.IsNullOrEmpty(txtPrenomProf.Text))
+                {
+                    errorProvider.SetError(txtPrenomProf, "Le prénom du professeur est requis.");
+                }
+                else if (string.IsNullOrEmpty(txtEmailProf.Text))
+                {
+                    errorProvider.SetError(txtEmailProf, "L'email du professeur est requis.");
+                }
+                else if (string.IsNullOrEmpty(txtTelephoneProf.Text))
+                {
+                    errorProvider.SetError(txtTelephoneProf, "Le téléphone du professeur est requis.");
+                }
+                else
+                {
+                    errorProvider.Clear(); // Efface les erreurs si tout est valide
+
+                    var professeur = db.Professeurs.Find(selectedId);
+                    if (professeur != null)
+                    {
+                        professeur.Nom = txtNomProf.Text;
+                        professeur.Prenom = txtPrenomProf.Text;
+                        professeur.Email = txtEmailProf.Text;
+                        professeur.Telephone = txtTelephoneProf.Text;
+                        db.SaveChanges();
+                        ChargerProfesseurs();
+                        txtNomProf.Clear();
+                        txtPrenomProf.Clear();
+                        txtEmailProf.Clear();
+                        txtTelephoneProf.Clear();
+                        selectedId = 0;
+                        MessageBox.Show("Modification effectuée avec succès !", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
             else

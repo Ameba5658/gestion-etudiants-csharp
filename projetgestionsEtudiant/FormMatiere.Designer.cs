@@ -36,14 +36,16 @@
             this.btnModifier = new System.Windows.Forms.Button();
             this.btnSupprimer = new System.Windows.Forms.Button();
             this.dgvMatieres = new System.Windows.Forms.DataGridView();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMatieres)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(40, 46);
+            this.label1.Location = new System.Drawing.Point(30, 46);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(101, 29);
             this.label1.TabIndex = 0;
@@ -51,9 +53,9 @@
             // 
             // txtNomMatiere
             // 
-            this.txtNomMatiere.Location = new System.Drawing.Point(163, 50);
+            this.txtNomMatiere.Location = new System.Drawing.Point(198, 50);
             this.txtNomMatiere.Name = "txtNomMatiere";
-            this.txtNomMatiere.Size = new System.Drawing.Size(119, 26);
+            this.txtNomMatiere.Size = new System.Drawing.Size(140, 26);
             this.txtNomMatiere.TabIndex = 1;
             // 
             // contextMenuStrip1
@@ -98,20 +100,25 @@
             this.dgvMatieres.AllowUserToDeleteRows = false;
             this.dgvMatieres.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvMatieres.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMatieres.Location = new System.Drawing.Point(305, 43);
+            this.dgvMatieres.Location = new System.Drawing.Point(359, 43);
             this.dgvMatieres.Name = "dgvMatieres";
             this.dgvMatieres.ReadOnly = true;
             this.dgvMatieres.RowHeadersWidth = 62;
             this.dgvMatieres.RowTemplate.Height = 28;
-            this.dgvMatieres.Size = new System.Drawing.Size(483, 302);
+            this.dgvMatieres.Size = new System.Drawing.Size(711, 306);
             this.dgvMatieres.TabIndex = 6;
             this.dgvMatieres.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMatieres_CellClick);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // FormMatiere
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.Color.Turquoise;
+            this.ClientSize = new System.Drawing.Size(1139, 483);
             this.Controls.Add(this.dgvMatieres);
             this.Controls.Add(this.btnSupprimer);
             this.Controls.Add(this.btnModifier);
@@ -122,6 +129,7 @@
             this.Text = "FormMatiere";
             this.Load += new System.EventHandler(this.FormMatiere_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMatieres)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -136,5 +144,6 @@
         private System.Windows.Forms.Button btnModifier;
         private System.Windows.Forms.Button btnSupprimer;
         private System.Windows.Forms.DataGridView dgvMatieres;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

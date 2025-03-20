@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using projetgestionsEtudiant.Models;
 
@@ -15,10 +9,13 @@ namespace projetgestionsEtudiant
     {
         private AppDbContext db = new AppDbContext();
         private int selectedId = 0;
+
+        // Ajout de l'ErrorProvider
+        private ErrorProvider errorProvider = new ErrorProvider();
+
         public FormMatiere()
         {
             InitializeComponent();
-
         }
 
         private void FormMatiere_Load(object sender, EventArgs e)
@@ -33,18 +30,20 @@ namespace projetgestionsEtudiant
 
         private void btnAjouter_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtNomMatiere.Text))
+            // Validation du champ de texte avec ErrorProvider
+            if (string.IsNullOrEmpty(txtNomMatiere.Text))
             {
+                errorProvider.SetError(txtNomMatiere, "Le nom de la matière ne peut pas être vide.");
+            }
+            else
+            {
+                errorProvider.Clear();  // Effacer l'erreur si le champ est valide
                 var matiere = new Matiere { NomMatiere = txtNomMatiere.Text };
                 db.Matieres.Add(matiere);
                 db.SaveChanges();
                 ChargerMatieres();
                 txtNomMatiere.Clear();
                 MessageBox.Show("Ajout effectué avec succès !", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("Veuillez entrer un nom de matière.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -54,22 +53,31 @@ namespace projetgestionsEtudiant
             {
                 selectedId = Convert.ToInt32(dgvMatieres.Rows[e.RowIndex].Cells["Id"].Value);
                 txtNomMatiere.Text = dgvMatieres.Rows[e.RowIndex].Cells["NomMatiere"].Value.ToString();
+                errorProvider.Clear(); // Effacer les erreurs quand une matière est sélectionnée
             }
         }
 
         private void btnModifier_Click(object sender, EventArgs e)
         {
-            if (selectedId != 0 && !string.IsNullOrEmpty(txtNomMatiere.Text))
+            if (selectedId != 0)
             {
-                var matiere = db.Matieres.Find(selectedId);
-                if (matiere != null)
+                if (string.IsNullOrEmpty(txtNomMatiere.Text))
                 {
-                    matiere.NomMatiere = txtNomMatiere.Text;
-                    db.SaveChanges();
-                    ChargerMatieres();
-                    txtNomMatiere.Clear();
-                    selectedId = 0;
-                    MessageBox.Show("Modification effectuée avec succès !", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    errorProvider.SetError(txtNomMatiere, "Le nom de la matière ne peut pas être vide.");
+                }
+                else
+                {
+                    errorProvider.Clear(); // Effacer l'erreur si le champ est valide
+                    var matiere = db.Matieres.Find(selectedId);
+                    if (matiere != null)
+                    {
+                        matiere.NomMatiere = txtNomMatiere.Text;
+                        db.SaveChanges();
+                        ChargerMatieres();
+                        txtNomMatiere.Clear();
+                        selectedId = 0;
+                        MessageBox.Show("Modification effectuée avec succès !", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
             else

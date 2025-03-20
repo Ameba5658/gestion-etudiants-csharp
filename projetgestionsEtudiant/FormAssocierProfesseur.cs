@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using projetgestionsEtudiant.Models;
 
@@ -14,7 +8,10 @@ namespace projetgestionsEtudiant
     public partial class FormAssocierProfesseur : Form
     {
         private AppDbContext db = new AppDbContext();
-        private int selectedId = 0;
+
+        // Ajout de l'ErrorProvider
+        private ErrorProvider errorProvider = new ErrorProvider();
+
         public FormAssocierProfesseur()
         {
             InitializeComponent();
@@ -25,6 +22,7 @@ namespace projetgestionsEtudiant
         {
 
         }
+
         private void ChargerListes()
         {
             using (var db = new AppDbContext())
@@ -50,12 +48,35 @@ namespace projetgestionsEtudiant
             }
         }
 
-
-
-
         private void btnAssocier_Click(object sender, EventArgs e)
         {
-            if (cmbProfesseurs.SelectedItem != null)
+            errorProvider.Clear(); // Effacer les erreurs précédentes
+
+            bool isValid = true;
+
+            // Vérifier si un professeur a été sélectionné
+            if (cmbProfesseurs.SelectedItem == null)
+            {
+                errorProvider.SetError(cmbProfesseurs, "Veuillez sélectionner un professeur.");
+                isValid = false;
+            }
+
+            // Vérifier si au moins une matière a été sélectionnée
+            if (clbMatieres.CheckedItems.Count == 0)
+            {
+                errorProvider.SetError(clbMatieres, "Veuillez sélectionner au moins une matière.");
+                isValid = false;
+            }
+
+            // Vérifier si au moins une classe a été sélectionnée
+            if (clbClasses.CheckedItems.Count == 0)
+            {
+                errorProvider.SetError(clbClasses, "Veuillez sélectionner au moins une classe.");
+                isValid = false;
+            }
+
+            // Si tout est valide, procéder à l'association
+            if (isValid)
             {
                 int profId = (int)cmbProfesseurs.SelectedValue;
 
@@ -80,7 +101,7 @@ namespace projetgestionsEtudiant
             }
             else
             {
-                MessageBox.Show("Veuillez sélectionner un professeur.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Veuillez corriger les erreurs avant de soumettre.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

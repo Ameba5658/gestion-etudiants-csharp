@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.txtNomClasse = new System.Windows.Forms.TextBox();
             this.btnAjouter = new System.Windows.Forms.Button();
             this.btnModifier = new System.Windows.Forms.Button();
             this.btnSupprimer = new System.Windows.Forms.Button();
             this.dgvClasses = new System.Windows.Forms.DataGridView();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvClasses)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -50,7 +53,7 @@
             // 
             // txtNomClasse
             // 
-            this.txtNomClasse.Location = new System.Drawing.Point(185, 48);
+            this.txtNomClasse.Location = new System.Drawing.Point(244, 48);
             this.txtNomClasse.Name = "txtNomClasse";
             this.txtNomClasse.Size = new System.Drawing.Size(132, 26);
             this.txtNomClasse.TabIndex = 1;
@@ -91,20 +94,25 @@
             this.dgvClasses.AllowUserToDeleteRows = false;
             this.dgvClasses.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvClasses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvClasses.Location = new System.Drawing.Point(340, 36);
+            this.dgvClasses.Location = new System.Drawing.Point(410, 23);
             this.dgvClasses.Name = "dgvClasses";
             this.dgvClasses.ReadOnly = true;
             this.dgvClasses.RowHeadersWidth = 62;
             this.dgvClasses.RowTemplate.Height = 28;
-            this.dgvClasses.Size = new System.Drawing.Size(565, 264);
+            this.dgvClasses.Size = new System.Drawing.Size(652, 264);
             this.dgvClasses.TabIndex = 5;
             this.dgvClasses.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClasses_CellClick);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // FormClasse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(917, 450);
+            this.BackColor = System.Drawing.Color.Turquoise;
+            this.ClientSize = new System.Drawing.Size(1143, 460);
             this.Controls.Add(this.dgvClasses);
             this.Controls.Add(this.btnSupprimer);
             this.Controls.Add(this.btnModifier);
@@ -113,7 +121,9 @@
             this.Controls.Add(this.label1);
             this.Name = "FormClasse";
             this.Text = "FormClasse";
+            this.Load += new System.EventHandler(this.FormClasse_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvClasses)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -127,5 +137,6 @@
         private System.Windows.Forms.Button btnModifier;
         private System.Windows.Forms.Button btnSupprimer;
         private System.Windows.Forms.DataGridView dgvClasses;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
